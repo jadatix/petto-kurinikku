@@ -1,11 +1,11 @@
 import { connectToDatabase } from "../../lib/mongodb"
-import { ObjectId } from "mongodb"
+import { reverse} from '../../lib/transliteration'
 
 export const getServerSideProps = async (context) => {
   const { db } = await connectToDatabase()
 
   const doctor = await db.collection("doctors")
-    .find({ _id: ObjectId(context.params.id) })
+    .find({ name: String(reverse(context.params.id)) })
     .toArray()
 
   return {

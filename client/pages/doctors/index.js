@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { connectToDatabase } from '../../lib/mongodb'
+import { transform } from '../../lib/transliteration'
 
 const DoctorItem = (props) => {
   return (
@@ -47,7 +48,7 @@ const Doctors = ({ doctors }) => {
           </div>
           <div className="flex flex-wrap -m-4">
             {doctors.map((doctor) => {
-              return (<DoctorItem img={doctor.img} spec={doctor.spec} name={doctor.name} link={"/doctors/" + doctor._id} key={doctor._id} />)
+              return (<DoctorItem img={doctor.img} spec={doctor.spec} name={doctor.name} link={"/doctors/" + transform(doctor.name)} />)
             })}
           </div>
         </div>
