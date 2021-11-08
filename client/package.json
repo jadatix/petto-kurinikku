@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "lodash.invert": "^4.3.0",
     "mongodb": "^4.1.4",
     "next": "latest",
     "react": "^17.0.2",
