@@ -56,21 +56,21 @@ const Contact = () => {
             <h2 className="color-text text-lg mb-1 font-medium title-font">Надіслати заявку на запис</h2>
             <div className="relative mb-4">
               <label htmlFor="name" className="conact-label">Ім'я</label>
-              <input onChange={e => { setName(e.target.value) }} placeholder="Ваше ім'я" type="text" id="name" name="name" className="contact-input color-animation color-border" />
+              <input value={name} onChange={e => { setName(e.target.value) }} placeholder="Ваше ім'я" type="text" id="name" name="name" className="contact-input color-animation color-border" />
             </div>
             <div className="relative mb-4">
               <label htmlFor="phone" className="conact-label">Телефон</label>
-              <input onChange={e => { setPhone(e.target.value) }} placeholder="Ваш телефон" type="text" id="phone" name="phone" className="contact-input color-animation color-border" />
+              <input value={phone} onChange={e => { setPhone(e.target.value) }} placeholder="Ваш телефон" type="text" id="phone" name="phone" className="contact-input color-animation color-border" />
             </div>
             <div className="relative mb-4">
               <label htmlFor="email" className="conact-label">Пошта</label>
-              <input onChange={e => { setEmail(e.target.value) }} placeholder="Ваша пошта" type="email" id="email" name="email" className="contact-input color-animation color-border" />
+              <input value={email} onChange={e => { setEmail(e.target.value) }} placeholder="Ваша пошта" type="email" id="email" name="email" className="contact-input color-animation color-border" />
             </div>
             <div className="relative mb-4">
               <label htmlFor="message" className="conact-label">Повідомлення</label>
-              <textarea onChange={e => { setMessage(e.target.value) }} placeholder="Опишіть свою проблему" id="message" name="message" className="contact-input color-animation color-border resize-none leading-6 h-32"></textarea>
+              <textarea value={message} onChange={e => { setMessage(e.target.value) }} placeholder="Опишіть свою проблему" id="message" name="message" className="contact-input color-animation color-border resize-none leading-6 h-32"></textarea>
             </div>
-            <button onClick={e => { handleSubmit(e) }} className="contact-button">Надіслати</button>
+            <input type="submit" onClick={e => { handleSubmit(e) }} className="contact-button" value="Надіслати"/>
             <p className="text-xs text-gray-500 mt-3">Ми використовуємо ваші персональні дані виключно для забезпечення надання послуг.</p>
           </form>
         </div>
