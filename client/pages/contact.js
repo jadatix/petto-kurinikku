@@ -5,7 +5,7 @@ const Contact = () => {
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
-  const [submitted, setSubmitted] = useState(false)
+  const [_submitted, setSubmitted] = useState(false)
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -70,7 +70,7 @@ const Contact = () => {
               <label htmlFor="message" className="conact-label">Повідомлення</label>
               <textarea value={message} onChange={e => { setMessage(e.target.value) }} placeholder="Опишіть свою проблему" id="message" name="message" className="contact-input color-animation color-border resize-none leading-6 h-32"></textarea>
             </div>
-            <input type="submit" onClick={e => { handleSubmit(e) }} className="contact-button" value="Надіслати"/>
+            <input type="submit" onClick={e => { handleSubmit(e) }} className="contact-button" value="Надіслати" />
             <p className="text-xs text-gray-500 mt-3">Ми використовуємо ваші персональні дані виключно для забезпечення надання послуг.</p>
           </form>
         </div>
