@@ -1,5 +1,6 @@
+import { useTheme } from "next-themes";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const LinkItem = ({ href, children, ...props }) => {
   return (
@@ -13,9 +14,19 @@ const LinkItem = ({ href, children, ...props }) => {
 
 const Navbar = (props) => {
   const [active, setActive] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   const handleClick = () => {
     setActive(!active);
+  };
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const switchTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
@@ -27,6 +38,16 @@ const Navbar = (props) => {
             <LinkItem href="/services">Сервіси</LinkItem>
             <LinkItem href="/doctors">Лікарі</LinkItem>
             <LinkItem href="/contact">Записатися</LinkItem>
+            <button
+              className="rounded color-text justify-center"
+              onClick={switchTheme}
+            >
+              {theme === "dark" ? (
+                <i className="fas fa-sun pointer-events-none color-text"></i>
+              ) : (
+                <i className="fas fa-moon pointer-events-none color-text"></i>
+              )}
+            </button>
           </div>
         </div>
         <button
@@ -48,6 +69,14 @@ const Navbar = (props) => {
             />
           </svg>
         </button>
+        <button className="lg:hidden rounded color-text" onClick={switchTheme}>
+          {theme === "dark" ? (
+            <i className="fas fa-sun pointer-events-none color-text"></i>
+          ) : (
+            <i className="fas fa-moon pointer-events-none color-text"></i>
+          )}
+        </button>
+
         <div
           className={`${
             active ? "" : "hidden"
