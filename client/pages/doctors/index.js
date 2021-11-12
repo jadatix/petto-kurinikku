@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import { connectToDatabase } from '../../lib/mongodb'
-import { transform } from '../../lib/transliteration'
+import { connectToDatabase } from '@lib/mongodb'
+import { transform } from '@lib/transliteration'
 
 const DoctorItem = (props) => {
   return (
