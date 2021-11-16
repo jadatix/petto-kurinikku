@@ -5,7 +5,7 @@ import { transform } from '@lib/transliteration'
 const DoctorItem = (props) => {
   return (
     <div className='xl:w-1/4 md:w-1/2 p-4'>
-      <div className='bg-gray-100 p-6 rounded-lg dark:bg-gray-800 dark:bg-opacity-40'>
+      <div className='bg-purple-100 p-6 rounded-lg dark:bg-gray-800 dark:bg-opacity-40'>
         <img className='h-40 rounded w-full object-cover object-center mb-6' src={props.img} alt='content' />
         <h3 className='tracking-widest link text-xs font-medium title-font'>{props.spec}</h3>
         <h2 className="text-lg font-medium title-font mb-4 color-text">{props.name}</h2>
@@ -46,7 +46,7 @@ const Doctors = ({ doctors }) => {
           <div className="flex flex-col text-center w-full mb-12">
             <h1 className="sm:text-3xl  text-2xl font-medium title-font mb-4 color-text">Наші Лікарі</h1>
           </div>
-          <div className="flex flex-wrap -m-4">
+          <div className="flex flex-wrap -m-4 justify-center">
             {doctors.map((doctor) => {
               return (<DoctorItem img={doctor.img} spec={doctor.spec} name={doctor.name} link={"/doctors/" + transform(doctor.name)} />)
             })}

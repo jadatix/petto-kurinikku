@@ -14,11 +14,11 @@
 }
 
 .color-border {
-  @apply  rounded border border-gray-300 focus:border-pink-500 dark:focus:border-pink-900 dark:border-gray-700;
+  @apply  rounded border border-gray-300 focus:border-purple-400 dark:focus:border-purple-400 dark:border-gray-700;
 }
 
 .color-shadow {
-  @apply focus:ring-2 focus:ring-pink-200 dark:focus:ring-pink-900;
+  @apply focus:ring-2 focus:ring-pink-200 dark:focus:ring-purple-500;
 }
 
 .contact-label {
@@ -30,7 +30,7 @@
 }
 
 .contact-button {
-  @apply text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg;
+  @apply text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg;
 }
 
 .color-text {
@@ -42,5 +42,5 @@
 }
 
 .link {
-  @apply text-pink-500 dark:text-pink-400;
+  @apply text-purple-600 dark:text-purple-400;
 }
