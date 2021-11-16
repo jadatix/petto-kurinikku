@@ -6,7 +6,7 @@ import Logo from './logo'
 const LinkItem = ({ href, children, ...props }) => {
   return (
     <Link href={href}>
-      <a className="lg:inline-flex color-text lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:bg-pink-600 hover:text-white">
+      <a className="lg:inline-flex color-text lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:bg-purple-400 hover:text-white">
         {children}
       </a>
     </Link>
@@ -40,7 +40,7 @@ const Navbar = (props) => {
           } />
 
           <button
-            className="inline-flex p-3 hover:bg-pink-600 rounded lg:hidden color-text ml-auto hover:text-white outline-none"
+            className="inline-flex p-3 hover:bg-purple-400 rounded lg:hidden color-text ml-auto hover:text-white outline-none"
             onClick={handleClick}
           >
             <svg
@@ -58,7 +58,7 @@ const Navbar = (props) => {
               />
             </svg>
           </button>
-          <button className="lg:hidden rounded color-text" onClick={switchTheme}>
+          <button className="lg:hidden hover:bg-purple-400 w-6 h-6 rounded color-text" onClick={switchTheme}>
             {theme === "dark" ? (
               <i className="fas fa-sun pointer-events-none color-text"></i>
             ) : (
