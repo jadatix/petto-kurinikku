@@ -1,4 +1,5 @@
 import Navbar from "./navbar";
+import Footer from "./footer";
 import Head from "next/head";
 
 export default function Layout({ children }) {
@@ -17,7 +18,10 @@ export default function Layout({ children }) {
       <header className="sticky top-0 z-50">
         <Navbar />
       </header>
-      <main>{children}</main>
+      <main className="h-full w-full">{children}</main>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 }
