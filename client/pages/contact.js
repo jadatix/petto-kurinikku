@@ -7,11 +7,14 @@ const Contact = () => {
   const [message, setMessage] = useState('')
   const [_submitted, setSubmitted] = useState(false)
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     console.log('Sending')
 
     let data = { name, phone, email, message }
+
+   
+    fetch(`/api/customer?&name=${name}&phone=${phone}&email=${email}&message=${message}`)
 
     fetch('/api/contact', {
       method: 'POST',
