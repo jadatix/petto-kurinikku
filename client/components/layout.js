@@ -18,7 +18,7 @@ export default function Layout({ children }) {
       <header className="sticky top-0 z-50">
         <Navbar />
       </header>
-      <main className="h-full w-full">{children}</main>
+      <main>{children}</main>
       <footer>
         <Footer />
       </footer>
