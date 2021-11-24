@@ -5,6 +5,10 @@
 /*  leading-8  */
 /* h-32  resize-none leading-6 */
 
+section {
+  min-height: 100vh;
+}
+
 .section {
   @apply text-gray-600 dark:text-gray-400 dark:bg-gray-900;
 }
