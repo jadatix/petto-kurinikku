@@ -3,12 +3,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Logo from './logo'
 
-const LinkItem = ({ href, children, ...props }) => {
+const LinkItem = ({ href, children }) => {
   return (
     <Link href={href}>
-      <a className="lg:inline-flex color-text lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:bg-purple-400 hover:text-white">
-        {children}
-      </a>
+      <div className="lg:inline-flex color-text lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:bg-purple-400 hover:text-white">{children}</div>
     </Link>
   );
 };
@@ -70,10 +68,26 @@ const Navbar = (props) => {
             } w-full lg:inline-flex lg:flex-grow lg:w-auto`}
         >
           <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start flex flex-col lg:h-auto">
-            <LinkItem href="/">Головна</LinkItem>
-            <LinkItem href="/services">Сервіси</LinkItem>
-            <LinkItem href="/doctors">Лікарі</LinkItem>
-            <LinkItem href="/contact">Записатися</LinkItem>
+            <LinkItem href="/">
+              <a onClick={handleClick}>
+                Головна
+              </a>
+            </LinkItem>
+            <LinkItem href="/services">
+              <a onClick={handleClick}>
+                Сервіси
+              </a>
+            </LinkItem>
+            <LinkItem href="/doctors">
+              <a onClick={handleClick}>
+                Лікарі
+              </a>
+            </LinkItem>
+            <LinkItem href="/contact">
+              <a onClick={handleClick}>
+                Записатися
+              </a>
+            </LinkItem>
             <button
               className={`${active ? "hidden" : ""
                 } rounded color-text justify-center"`}
