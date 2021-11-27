@@ -4,7 +4,7 @@ import { transform } from '@lib/transliteration'
 
 const DoctorItem = (props) => {
   return (
-    <div className='transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-125 xl:w-1/4 md:w-1/2 p-5'>
+    <div className='transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 xl:w-1/4 md:w-1/2 p-5'>
       <div className='bg-purple-100 p-6 rounded-lg dark:bg-gray-800 dark:bg-opacity-40'>
         <img className='h-40 rounded w-full object-cover object-center mb-6' src={props.img} alt='content' />
         <h3 className='tracking-widest link text-xs font-medium title-font'>{props.spec}</h3>
