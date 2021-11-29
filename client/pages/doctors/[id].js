@@ -24,8 +24,8 @@ const Details = ({ doctor }) => {
           <div class="lg:w-4/6 mx-auto">
             <div class="flex flex-col sm:flex-row mt-10">
               <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8">
-                <div class="w-40 h-40 rounded-full inline-flex items-center justify-center bg-gray-200 dark:bg-gray-800 dark:text-gray-600 text-gray-400">
-                  <img alt="content" class="object-cover object-center rounded-full h-full w-full" src={doctor.img} />
+                <div class="w-60 h-60 inline-flex items-center justify-center bg-gray-200 dark:bg-gray-800 dark:text-gray-600 text-gray-400">
+                  <img alt="content" class="object-cover object-center h-full w-full" src={doctor.img} />
                 </div>
                 <div class="flex flex-col items-center text-center justify-center">
                   <h2 class="font-medium title-font mt-4 color-text text-lg">{doctor.name}</h2>

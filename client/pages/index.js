@@ -25,8 +25,8 @@ export default function Home() {
         <div className="lg:w-1/2 w-full mb-10 lg:mb-0 rounded-lg overflow-hidden">
           <Link href="/contact">
             <a>
-              <img alt="feature" className="object-cover object-center h-full w-full" src="https://dogsniffer.com/la/wp-content/uploads/sites/2/2015/02/inland-valley-pet-clinic.jpg" />
-            </a>
+              <img alt="feature" className="object-cover object-center h-full w-full" src="/index.jpg" />
+              </a>
           </Link>
         </div>
         <div className="flex flex-col flex-wrap lg:py-6 -mb-10 lg:w-1/2 lg:pl-12 lg:text-left text-center">
