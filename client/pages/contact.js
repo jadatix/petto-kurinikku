@@ -8,6 +8,7 @@ const Contact = () => {
   const [_submitted, setSubmitted] = useState(false)
 
   const handleSubmit = async (e) => {
+    
     e.preventDefault()
     console.log('Sending')
 
@@ -36,6 +37,7 @@ const Contact = () => {
     })
   }
 
+
   return (
     <>
       <section className="section body-font relative">
@@ -55,19 +57,19 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          <form className="lg:w-1/3 md:w-1/2 bg-white dark:bg-gray-900 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
+          <form onSubmit={handleSubmit} className="lg:w-1/3 md:w-1/2 bg-white dark:bg-gray-900 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
             <h2 className="color-text text-lg mb-1 font-medium title-font">Надіслати заявку на запис</h2>
             <div className="relative mb-4">
               <label htmlFor="name" className="conact-label">Ім'я</label>
-              <input value={name} onChange={e => { setName(e.target.value) }} placeholder="Ваше ім'я" type="text" id="name" name="name" className="contact-input color-animation color-border" />
+              <input required value={name} onChange={e => { setName(e.target.value) }} placeholder="Ваше ім'я" type="text" id="name" name="name" className="contact-input color-animation color-border" />
             </div>
             <div className="relative mb-4">
               <label htmlFor="phone" className="conact-label">Телефон</label>
-              <input value={phone} onChange={e => { setPhone(e.target.value) }} placeholder="Ваш телефон" type="text" id="phone" name="phone" className="contact-input color-animation color-border" />
+              <input required value={phone} onChange={e => { setPhone(e.target.value) }} placeholder="Ваш телефон" type="tel" id="phone" name="phone" pattern="^(063|067|068|073|093|095|096|097|098|099)[0-9]{7}$" className="contact-input color-animation color-border" />
             </div>
             <div className="relative mb-4">
               <label htmlFor="email" className="conact-label">Пошта</label>
-              <input value={email} onChange={e => { setEmail(e.target.value) }} placeholder="Ваша пошта" type="email" id="email" name="email" className="contact-input color-animation color-border" />
+              <input required value={email} onChange={e => { setEmail(e.target.value) }} placeholder="Ваша пошта" type="email" id="email" name="email" className="contact-input color-animation color-border" />
             </div>
             <div className="relative mb-4">
               <label htmlFor="message" className="conact-label">Повідомлення</label>
