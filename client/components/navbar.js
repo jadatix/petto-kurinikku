@@ -39,6 +39,33 @@ const Navbar = (props) => {
             : "/footprint-dark.png"
         } />
 
+        <div className="hidden md:blocklg:inline-flex md:flex lg:flex-row lg:ml-auto lg:w-auto lg:items-center items-start flex-col lg:h-auto">
+          <LinkItem href="/">
+            Головна
+          </LinkItem>
+          <LinkItem href="/services">
+            Сервіси
+          </LinkItem>
+          <LinkItem href="/doctors">
+            Лікарі
+          </LinkItem>
+          <LinkItem href="/contact">
+            Записатися
+          </LinkItem>
+          <button
+            className={`${active ? "hidden" : ""
+              } rounded color-text justify-center"`}
+            onClick={switchTheme}
+          >
+            {theme === "dark" ? (
+              <i className="fas fa-sun pointer-events-none color-text"></i>
+            ) : (
+              <i className="fas fa-moon pointer-events-none color-text"></i>
+            )}
+          </button>
+        </div>
+
+
         <button
           className="inline-flex p-3 hover:bg-purple-400 rounded lg:hidden color-text ml-auto hover:text-white outline-none"
           onClick={handleClick}
@@ -65,34 +92,36 @@ const Navbar = (props) => {
             <i className="fas fa-moon pointer-events-none color-text"></i>
           )}
         </button>
-        <div
-          className={`${active ? "" : "hidden"
-            } w-full lg:inline-flex lg:flex-grow lg:w-auto`}
-        >
-          <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start flex flex-col lg:h-auto">
-            <LinkItem href="/" onClick={handleClick}>
-              Головна
-            </LinkItem>
-            <LinkItem href="/services" onClick={handleClick}>
-              Сервіси
-            </LinkItem>
-            <LinkItem href="/doctors" onClick={handleClick}> 
-              Лікарі
-            </LinkItem>
-            <LinkItem href="/contact" onClick={handleClick}>
-              Записатися
-            </LinkItem>
-            <button
-              className={`${active ? "hidden" : ""
-                } rounded color-text justify-center"`}
-              onClick={switchTheme}
-            >
-              {theme === "dark" ? (
-                <i className="fas fa-sun pointer-events-none color-text"></i>
-              ) : (
-                <i className="fas fa-moon pointer-events-none color-text"></i>
-              )}
-            </button>
+        <div className="md:hidden">
+          <div
+            className={`${active ? "" : "hidden"
+              } w-full lg:inline-flex lg:flex-grow lg:w-auto`}
+          >
+            <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start flex flex-col lg:h-auto">
+              <LinkItem href="/" onClick={handleClick}>
+                Головна
+              </LinkItem>
+              <LinkItem href="/services" onClick={handleClick}>
+                Сервіси
+              </LinkItem>
+              <LinkItem href="/doctors" onClick={handleClick}>
+                Лікарі
+              </LinkItem>
+              <LinkItem href="/contact" onClick={handleClick}>
+                Записатися
+              </LinkItem>
+              <button
+                className={`${active ? "hidden" : ""
+                  } rounded color-text justify-center"`}
+                onClick={switchTheme}
+              >
+                {theme === "dark" ? (
+                  <i className="fas fa-sun pointer-events-none color-text"></i>
+                ) : (
+                  <i className="fas fa-moon pointer-events-none color-text"></i>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </nav>
