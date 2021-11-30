@@ -1,3 +1,4 @@
+import { useForm } from "react-hook-form"
 import { useState } from 'react'
 
 const Contact = () => {
@@ -7,13 +8,11 @@ const Contact = () => {
   const [message, setMessage] = useState('')
   const [_submitted, setSubmitted] = useState(false)
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const handleSubmit = (e) => {
     console.log('Sending')
 
     let data = { name, phone, email, message }
 
-   
     fetch(`/api/customer?&name=${name}&phone=${phone}&email=${email}&message=${message}`)
 
     fetch('/api/contact', {
@@ -34,6 +33,7 @@ const Contact = () => {
         setMessage('')
       }
     })
+    e.preventDefault()
   }
 
   return (
@@ -55,25 +55,25 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          <form className="lg:w-1/3 md:w-1/2 bg-white dark:bg-gray-900 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
+          <form onSubmit={e => { handleSubmit(e) }} className="lg:w-1/3 md:w-1/2 bg-white dark:bg-gray-900 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
             <h2 className="color-text text-lg mb-1 font-medium title-font">Надіслати заявку на запис</h2>
             <div className="relative mb-4">
               <label htmlFor="name" className="conact-label">Ім'я</label>
-              <input value={name} onChange={e => { setName(e.target.value) }} placeholder="Ваше ім'я" type="text" id="name" name="name" className="contact-input color-animation color-border" />
+              <input value={name} onChange={e => { setName(e.target.value) }} placeholder="Ваше ім'я" type="text" id="name" name="name" className="contact-input color-animation color-border" pattern="[А-ЯІЇҐЄ]{1}[а-яіїєґ]{1,}" required />
             </div>
             <div className="relative mb-4">
               <label htmlFor="phone" className="conact-label">Телефон</label>
-              <input value={phone} onChange={e => { setPhone(e.target.value) }} placeholder="Ваш телефон" type="text" id="phone" name="phone" className="contact-input color-animation color-border" />
+              <input value={phone} onChange={e => { setPhone(e.target.value) }} placeholder="01234567891" type="text" id="phone" name="phone" className="contact-input color-animation color-border" pattern="^(063|067|068|073|093|095|096|097|098|099)[0-9]{7}$" required />
             </div>
             <div className="relative mb-4">
               <label htmlFor="email" className="conact-label">Пошта</label>
-              <input value={email} onChange={e => { setEmail(e.target.value) }} placeholder="Ваша пошта" type="email" id="email" name="email" className="contact-input color-animation color-border" />
+              <input value={email} onChange={e => { setEmail(e.target.value) }} placeholder="Ваша пошта" type="email" id="email" name="email" className="contact-input color-animation color-border" required />
             </div>
             <div className="relative mb-4">
               <label htmlFor="message" className="conact-label">Повідомлення</label>
-              <textarea value={message} onChange={e => { setMessage(e.target.value) }} placeholder="Опишіть свою проблему" id="message" name="message" className="contact-input color-animation color-border resize-none leading-6 h-32"></textarea>
+              <textarea value={message} onChange={e => { setMessage(e.target.value) }} placeholder="Опишіть свою проблему" id="message" name="message" className="contact-input color-animation color-border resize-none leading-6 h-32" ></textarea>
             </div>
-            <input type="submit" onClick={e => { handleSubmit(e) }} className="contact-button" value="Надіслати" />
+            <input type="submit" className="contact-button" value="Надіслати" />
             <p className="text-xs text-gray-500 mt-3">Ми використовуємо ваші персональні дані виключно для забезпечення надання послуг.</p>
           </form>
         </div>
