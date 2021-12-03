@@ -23,6 +23,7 @@ pub fn rocket() -> rocket::Rocket {
         routes::customer::get_customers,
         routes::customer::get_customer,
         routes::customer::create_customer,
+        routes::customer::update_customer,
       ],
     )
     .manage(config::init())

@@ -30,7 +30,10 @@ pub struct NewCustomer {
 }
 
 #[post("/customers", format = "json", data = "<new_customer>")]
-pub fn create_customer(new_customer: Json<NewCustomer>, db: DB) -> Result<JsonValue, Box<dyn Error>> {
+pub fn create_customer(
+  new_customer: Json<NewCustomer>,
+  db: DB,
+) -> Result<JsonValue, Box<dyn Error>> {
   let result = CustomerRepository::save(
     new_customer_to_doc(NewCustomer {
       name: new_customer.name.to_string(),
@@ -43,4 +46,23 @@ pub fn create_customer(new_customer: Json<NewCustomer>, db: DB) -> Result<JsonVa
     &db,
   )?;
   Ok(json!(result))
+}
+
+#[put("/customers/<id>?<ordered_service>&<examined_doctor>")]
+pub fn update_customer(
+  id: String,
+  ordered_service: String,
+  examined_doctor: String,
+  db: DB,
+) -> Result<JsonValue, Box<dyn Error>> {
+  CustomerRepository::update(id.as_str(), 
+    doc! {
+      "$set": {
+        "ordred_service": ordered_service.to_string(),
+        "examined_doctor": examined_doctor.to_string()
+      }
+    },
+    &db,
+  )?;
+   Ok(json!({"id": id}))
 }

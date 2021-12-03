@@ -1,5 +1,5 @@
 use mongodb::bson::{doc, document::Document, oid::ObjectId};
-use mongodb::results::{InsertOneResult};
+use mongodb::results::{InsertOneResult, UpdateResult};
 
 use crate::config::DB;
 use crate::errors::Error;
@@ -43,17 +43,16 @@ pub trait MongoRepository {
     Ok(result)
   }
 
-  fn update(document: Document, db: &DB) -> Result<(), Error> {
-    let id = document.get_str("_id")?;
+  fn update(id: &str, document: Document, db: &DB) -> Result<UpdateResult, Error> {
     let oid = ObjectId::with_string(id)
       .map_err(|_| InvalidIDError(id.to_owned()))?;
     let query = doc! {
       "_id": oid,
     };
 
-    db.client.database(DB_NAME).collection(Self::Entity::collection().as_str())
+    let result = db.client.database(DB_NAME).collection(Self::Entity::collection().as_str())
       .update_one(query, document, None)?;
-    Ok(())
+    Ok(result)
   }
 
   fn save(document: Document, db: &DB) -> Result<InsertOneResult, Error> {
