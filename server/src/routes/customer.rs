@@ -55,7 +55,8 @@ pub fn update_customer(
   examined_doctor: String,
   db: DB,
 ) -> Result<JsonValue, Box<dyn Error>> {
-  CustomerRepository::update(id.as_str(), 
+  CustomerRepository::update(
+    id.as_str(),
     doc! {
       "$set": {
         "ordered_service": ordered_service.to_string(),
@@ -64,5 +65,11 @@ pub fn update_customer(
     },
     &db,
   )?;
-   Ok(json!({"id": id}))
+  Ok(json!({ "id": id }))
+}
+
+#[delete("/customers/<id>")]
+pub fn delete_customer(id: String, db: DB) -> Result<JsonValue, Box<dyn Error>> {
+  CustomerRepository::delete(id.as_str(), &db)?;
+  Ok(json!({ "id": id }))
 }
