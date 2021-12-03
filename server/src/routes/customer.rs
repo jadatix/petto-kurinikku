@@ -58,7 +58,7 @@ pub fn update_customer(
   CustomerRepository::update(id.as_str(), 
     doc! {
       "$set": {
-        "ordred_service": ordered_service.to_string(),
+        "ordered_service": ordered_service.to_string(),
         "examined_doctor": examined_doctor.to_string()
       }
     },
