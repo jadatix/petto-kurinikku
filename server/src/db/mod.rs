@@ -7,6 +7,7 @@ use crate::errors::Error;
 use crate::errors::Error::{InvalidIDError, MongoQueryError};
 
 pub mod customer;
+pub mod doctor;
 
 static DB_NAME: &'static str = "vetclinic";
 

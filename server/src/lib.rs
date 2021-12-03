@@ -6,8 +6,6 @@ extern crate rocket;
 #[macro_use]
 extern crate rocket_contrib;
 
-use dotenv::dotenv;
-
 mod config;
 mod db;
 mod errors;
@@ -15,7 +13,6 @@ mod models;
 mod routes;
 
 pub fn rocket() -> rocket::Rocket {
-  dotenv().ok();
   rocket::ignite()
     .mount(
       "/api",
@@ -25,6 +22,10 @@ pub fn rocket() -> rocket::Rocket {
         routes::customer::create_customer,
         routes::customer::update_customer,
         routes::customer::delete_customer,
+        routes::doctor::get_doctors,
+        routes::doctor::get_doctor,
+        routes::doctor::create_doctor,
+        routes::doctor::delete_doctor,
       ],
     )
     .manage(config::init())
