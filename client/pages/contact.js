@@ -7,13 +7,25 @@ const Contact = () => {
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
   const [_submitted, setSubmitted] = useState(false)
+  const [ordered_service, setOrderedService] = useState('')
+  const [examined_doctor, setExaminedDoctor] = useState('')
 
   const handleSubmit = (e) => {
     console.log('Sending')
 
-    let data = { name, phone, email, message }
+    let data = {
+      name, phone, email, message, ordered_service, examined_doctor 
+    }
 
-    fetch(`/api/customer?&name=${name}&phone=${phone}&email=${email}&message=${message}`)
+    fetch('http://localhost:8000/api/customers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+
+    // fetch(`/api/customer?&name=${name}&phone=${phone}&email=${email}&message=${message}`)
 
     fetch('/api/contact', {
       method: 'POST',
