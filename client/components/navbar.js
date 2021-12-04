@@ -102,7 +102,7 @@ const Navbar = (props) => {
                 Головна
               </LinkItem>
               <LinkItem href="/services" onClick={handleClick}>
-                Сервіси
+                Послуги
               </LinkItem>
               <LinkItem href="/doctors" onClick={handleClick}>
                 Лікарі
