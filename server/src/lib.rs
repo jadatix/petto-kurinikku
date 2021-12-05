@@ -26,6 +26,11 @@ pub fn rocket() -> rocket::Rocket {
         routes::doctor::get_doctor,
         routes::doctor::create_doctor,
         routes::doctor::delete_doctor,
+        routes::service::create_service,
+        routes::service::delete_service,
+        routes::service::get_service,
+        routes::service::get_services,
+        routes::customer::find_by_date,
       ],
     )
     .manage(config::init())
