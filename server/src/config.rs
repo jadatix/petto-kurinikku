@@ -1,9 +1,9 @@
-use chrono::{offset::TimeZone, DateTime, Utc, NaiveDateTime};
+use chrono::{offset::TimeZone, DateTime, NaiveDateTime, Utc};
 use mongodb::{options::ClientOptions, sync::Client};
 use rocket::http::RawStr;
 use rocket::request::{self, FromFormValue, FromRequest};
 use rocket::{Outcome, Request, State};
-use std::{ops::Deref, convert::Into};
+use std::{convert::Into, ops::Deref};
 
 #[derive(Clone, Debug)]
 pub struct DB {
@@ -52,8 +52,8 @@ impl<'v> FromFormValue<'v> for NaiveDateTimeFrom {
 
   fn from_form_value(form_value: &'v RawStr) -> Result<NaiveDateTimeFrom, &'v RawStr> {
     let decoded = form_value.url_decode().map_err(|_| form_value)?;
-    if let Ok(datetime) = NaiveDateTime::parse_from_str(&decoded, "%Y-%m-%dT%H:%M:%S") {
-      return Ok(NaiveDateTimeFrom(datetime))
+    if let Ok(datetime) = NaiveDateTime::parse_from_str(&decoded, "%Y-%m-%dT%H:%M:%SZ") {
+      return Ok(NaiveDateTimeFrom(datetime));
     }
     Err(form_value)
   }
@@ -73,3 +73,4 @@ impl Into<DateTime<Utc>> for NaiveDateTimeFrom {
     datetime
   }
 }
+

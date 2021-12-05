@@ -1,13 +1,13 @@
+use chrono::{Duration, offset::Utc, DateTime};
 use mongodb::bson::doc;
 use rocket_contrib::json::{Json, JsonValue};
 use serde::Deserialize;
-use chrono::{offset::Utc, DateTime};
 
 use crate::config::DB;
+use crate::config::NaiveDateTimeFrom;
 use crate::db::customer::{new_customer_to_doc, CustomerRepository};
 use crate::db::MongoRepository;
 use std::error::Error;
-use crate::config::NaiveDateTimeFrom;
 
 #[get("/customers")]
 pub fn get_customers(db: DB) -> Result<JsonValue, Box<dyn Error>> {
@@ -65,7 +65,7 @@ pub fn update_customer(
       "$set": {
         "ordered_service": ordered_service.to_string(),
         "examined_doctor": examined_doctor.to_string(),
-        "order_datetime": datetime 
+        "order_datetime": datetime
     }
     },
     &db,
@@ -77,4 +77,17 @@ pub fn update_customer(
 pub fn delete_customer(id: String, db: DB) -> Result<JsonValue, Box<dyn Error>> {
   CustomerRepository::delete(id.as_str(), &db)?;
   Ok(json!({ "id": id }))
+}
+
+#[get("/findByDate?<date>")]
+pub fn find_by_date(date: NaiveDateTimeFrom, db: DB) -> Result<JsonValue, Box<dyn Error>> {
+  let datetime: DateTime<Utc> = date.into();
+  let end_datetime = datetime + Duration::days(1);
+  let result = CustomerRepository::find_by(doc! {
+    "order_datetime": {
+      "$gte": datetime,
+      "$lt": end_datetime 
+    },
+  }, &db)?;
+  Ok(json!({ "customers": result }))
 }

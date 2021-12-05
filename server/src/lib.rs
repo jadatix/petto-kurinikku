@@ -30,6 +30,7 @@ pub fn rocket() -> rocket::Rocket {
         routes::service::delete_service,
         routes::service::get_service,
         routes::service::get_services,
+        routes::customer::find_by_date,
       ],
     )
     .manage(config::init())

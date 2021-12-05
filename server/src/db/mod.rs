@@ -51,6 +51,20 @@ pub trait MongoRepository {
     Ok(result)
   }
 
+  fn find_by(document: Document, db: &DB) -> Result<Vec<Document>, Error> {
+    let mut cursor = db
+      .client
+      .database(DB_NAME)
+      .collection_with_type::<Document>(Self::Entity::collection().as_str())
+      .find(document, None)
+      .map_err(MongoQueryError)?;
+    let mut result: Vec<Document> = Vec::new();
+    while let Some(doc) = cursor.next() {
+      result.push(doc?);
+    }
+    Ok(result)
+  }
+
   fn update(id: &str, document: Document, db: &DB) -> Result<UpdateResult, Error> {
     let oid = ObjectId::with_string(id).map_err(|_| InvalidIDError(id.to_owned()))?;
     let query = doc! {
