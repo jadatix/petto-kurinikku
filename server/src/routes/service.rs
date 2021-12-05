@@ -23,7 +23,7 @@ pub fn get_service(id: String, db: DB) -> Option<JsonValue> {
 pub struct NewService {
   pub name: String,
   pub desc: String,
-  pub price: u8,
+  pub price: i32,
 }
 
 #[post("/services", format = "json", data = "<new_service>")]

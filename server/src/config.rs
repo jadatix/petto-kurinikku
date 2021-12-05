@@ -1,8 +1,9 @@
-use mongodb::options::ClientOptions;
-use mongodb::sync::Client;
-use rocket::request::{self, FromRequest};
+use chrono::{offset::TimeZone, DateTime, Utc, NaiveDateTime};
+use mongodb::{options::ClientOptions, sync::Client};
+use rocket::http::RawStr;
+use rocket::request::{self, FromFormValue, FromRequest};
 use rocket::{Outcome, Request, State};
-use std::ops::Deref;
+use std::{ops::Deref, convert::Into};
 
 #[derive(Clone, Debug)]
 pub struct DB {
@@ -12,8 +13,7 @@ pub struct DB {
 pub fn init() -> Client {
   let mongo_uri =
     "mongodb+srv://admin:admin@cluster0.eqn0h.mongodb.net/vetclinic?retryWrites=true&w=majority";
-  let mut client_options =
-    ClientOptions::parse(mongo_uri).expect("Can't parse client options");
+  let mut client_options = ClientOptions::parse(mongo_uri).expect("Can't parse client options");
   let db_name = String::from("vetclinic");
   client_options.app_name = Some(db_name);
 
@@ -42,5 +42,34 @@ impl Deref for DB {
 
   fn deref(&self) -> &Self::Target {
     &self.client
+  }
+}
+
+pub struct NaiveDateTimeFrom(NaiveDateTime);
+
+impl<'v> FromFormValue<'v> for NaiveDateTimeFrom {
+  type Error = &'v RawStr;
+
+  fn from_form_value(form_value: &'v RawStr) -> Result<NaiveDateTimeFrom, &'v RawStr> {
+    let decoded = form_value.url_decode().map_err(|_| form_value)?;
+    if let Ok(datetime) = NaiveDateTime::parse_from_str(&decoded, "%Y-%m-%dT%H:%M:%S") {
+      return Ok(NaiveDateTimeFrom(datetime))
+    }
+    Err(form_value)
+  }
+}
+
+impl Deref for NaiveDateTimeFrom {
+  type Target = NaiveDateTime;
+
+  fn deref(&self) -> &NaiveDateTime {
+    &self.0
+  }
+}
+
+impl Into<DateTime<Utc>> for NaiveDateTimeFrom {
+  fn into(self) -> DateTime<Utc> {
+    let datetime: DateTime<Utc> = Utc.from_local_datetime(&*self).unwrap();
+    datetime
   }
 }

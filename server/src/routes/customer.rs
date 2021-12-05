@@ -1,11 +1,13 @@
 use mongodb::bson::doc;
 use rocket_contrib::json::{Json, JsonValue};
 use serde::Deserialize;
+use chrono::{offset::Utc, DateTime};
 
 use crate::config::DB;
 use crate::db::customer::{new_customer_to_doc, CustomerRepository};
 use crate::db::MongoRepository;
 use std::error::Error;
+use crate::config::NaiveDateTimeFrom;
 
 #[get("/customers")]
 pub fn get_customers(db: DB) -> Result<JsonValue, Box<dyn Error>> {
@@ -48,20 +50,23 @@ pub fn create_customer(
   Ok(json!(result))
 }
 
-#[put("/customers/<id>?<ordered_service>&<examined_doctor>")]
+#[put("/customers/<id>?<ordered_service>&<examined_doctor>&<order_datetime>")]
 pub fn update_customer(
   id: String,
   ordered_service: String,
   examined_doctor: String,
+  order_datetime: NaiveDateTimeFrom,
   db: DB,
 ) -> Result<JsonValue, Box<dyn Error>> {
+  let datetime: DateTime<Utc> = order_datetime.into();
   CustomerRepository::update(
     id.as_str(),
     doc! {
       "$set": {
         "ordered_service": ordered_service.to_string(),
-        "examined_doctor": examined_doctor.to_string()
-      }
+        "examined_doctor": examined_doctor.to_string(),
+        "order_datetime": datetime 
+    }
     },
     &db,
   )?;
