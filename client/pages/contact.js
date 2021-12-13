@@ -9,15 +9,16 @@ const Contact = () => {
   const [_submitted, setSubmitted] = useState(false)
   const [ordered_service, setOrderedService] = useState('')
   const [examined_doctor, setExaminedDoctor] = useState('')
+  const [order_datetime, setOrderDatetime] = useState("")
 
   const handleSubmit = (e) => {
     console.log('Sending')
 
     let data = {
-      name, phone, email, message, ordered_service, examined_doctor 
+      name, phone, email, message, ordered_service, examined_doctor, order_datetime
     }
 
-    fetch('http://localhost:8000/api/customers', {
+    fetch('https://localhost:7079/api/customers', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
