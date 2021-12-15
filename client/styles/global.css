@@ -48,3 +48,27 @@ section {
 .link {
   @apply text-purple-600 dark:text-purple-400;
 }
+
+.navbar {
+  @apply lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto lg:items-center items-start flex-col lg:h-auto;
+}
+
+.menu-button {
+  @apply inline-flex p-3 hover:bg-purple-400 rounded lg:hidden ml-auto hover:text-white outline-none;
+}
+
+.footer {
+  @apply mx-auto text-center flex flex-col text-sm;
+}
+
+.logo {
+  @apply lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start flex lg:h-auto;
+}
+
+.logo .image {
+  transition: 200ms ease;
+}
+
+.logo .image:hover {
+  transform: rotate(30deg);
+}
