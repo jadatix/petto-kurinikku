@@ -1,6 +1,6 @@
 import { useTheme } from "next-themes";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Logo from './logo'
 
 const LinkItem = ({ href, children, ...props }) => {
@@ -13,14 +13,19 @@ const LinkItem = ({ href, children, ...props }) => {
   );
 };
 
-const Navbar = (props) => {
-  const [active, setActive] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+const switchMount = (initialState) => {
+  const [isActive, setActive] = useState(initialState)
+  const [isMounted, setIsMounted] = useState(initialState)
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+  const handleClick = useCallback(() => setActive(!isActive), [isActive])
+  return [isActive, handleClick]
+}
 
-  const handleClick = () => {
-    setActive(!active);
-  };
+const Navbar = (props) => {
+  const [isActive, handleClick] = switchMount(false)
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setIsMounted(true);
