@@ -45,7 +45,7 @@ const Contact = () => {
 
     let data = {name, phone, email, message}
 
-    fetch('http://localhost:8000/api/customers', {
+    fetch('https://localhost:7079/api/customers', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
