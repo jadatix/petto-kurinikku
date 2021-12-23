@@ -94,7 +94,7 @@ const Contact = () => {
               <label htmlFor="message" className="conact-label">Повідомлення</label>
               <textarea value={message} onChange={e => { setMessage(e.target.value) }} placeholder="Опишіть свою проблему" id="message" name="message" className="contact-input color-animation color-border resize-none leading-6 h-32" ></textarea>
             </div>
-            <input type="submit" className="contact-button" value="Надіслати" />
+            <input type="submit" className="contact-button hover:shadow-lg hover:shadow-cyan-500/50" value="Записатися" />
             <p className="text-xs text-gray-500 mt-3">Ми використовуємо ваші персональні дані виключно для забезпечення надання послуг.</p>
           </form>
         </div>

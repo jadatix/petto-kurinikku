@@ -29,7 +29,7 @@ const Details = ({ doctor }) => {
                 </div>
                 <div class="flex flex-col items-center text-center justify-center">
                   <h2 class="font-medium title-font mt-4 color-text text-lg">{doctor.name}</h2>
-                  <div class="w-12 h-1 bg-purple-500 dark:bg-purple-400 rounded mt-2 mb-4"></div>
+                  <div class="w-12 h-1 bg-cyan-500 dark:bg-cyan-400 rounded mt-2 mb-4"></div>
                   <p class="text-base">{doctor.spec}</p>
                 </div>
               </div>

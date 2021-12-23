@@ -18,11 +18,11 @@ section {
 }
 
 .color-border {
-  @apply  rounded border border-gray-300 focus:border-purple-400 dark:focus:border-purple-400 dark:border-gray-700;
+  @apply  rounded border border-gray-300 focus:border-cyan-400 dark:focus:border-cyan-400 dark:border-gray-700;
 }
 
 .color-shadow {
-  @apply focus:ring-2 focus:ring-pink-200 dark:focus:ring-purple-500;
+  @apply focus:ring-2 focus:ring-pink-200 dark:focus:ring-cyan-500;
 }
 
 .contact-label {
@@ -34,7 +34,7 @@ section {
 }
 
 .contact-button {
-  @apply text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg;
+@apply text-white bg-cyan-500 border-0 py-2 px-6 focus:outline-none hover:bg-cyan-400 rounded text-lg;
 }
 
 .color-text {
@@ -46,7 +46,7 @@ section {
 }
 
 .link {
-  @apply text-purple-600 dark:text-purple-400;
+  @apply text-cyan-600 dark:text-cyan-400;
 }
 
 .navbar {
@@ -54,7 +54,7 @@ section {
 }
 
 .menu-button {
-  @apply inline-flex p-3 hover:bg-purple-400 rounded lg:hidden ml-auto hover:text-white outline-none;
+  @apply inline-flex p-3 hover:bg-cyan-400 rounded lg:hidden ml-auto hover:text-white outline-none;
 }
 
 .footer {

@@ -26,18 +26,18 @@ const Navbar = (props) => {
 
   return (
     <>
-      <nav className="flex items-center flex-wrap section pl-10 pr-10 p-2 bg-white">
+      <nav className="flex items-center flex-wrap pl-10 pr-10 p-2 border-b border-gray-900/10 lg:px-8 lg:border-0 dark:border-gray-300/10">
         <Logo color={theme} />
 
-        <div className="hidden md:block md:flex navbar">
+        <div className="hidden lg:block lg:flex navbar">
           <Nav isActive={isActive} switchTheme={switchTheme} theme={theme} desktop={true} />
         </div>
 
         <MenuButton handleClick={handleClick} isActive={isActive} />
 
-        <ThemeButton tailwindClasses={"lg:hidden hover:bg-purple-400 w-6 h-6 rounded color-text"} switchTheme={switchTheme} theme={theme} />
+        <ThemeButton tailwindClasses={"lg:hidden w-6 h-6 rounded color-text"} switchTheme={switchTheme} theme={theme} />
 
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <div className={`${isActive ? "" : "hidden"} w-full lg:inline-flex lg:flex-grow lg:w-auto`}>
             <div className="navbar">
               <Nav handleClick={handleClick} />

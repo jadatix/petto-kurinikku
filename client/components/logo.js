@@ -9,7 +9,7 @@ const Logo = ({ color }) => {
           <a className="mt-2"><Image className="image" src={`/footprint-${color}.png`} width={25} height={25} /></a>
         </Link>
         <Link href="/">
-          <a className="text-black dark:text-white p-2 font-bold">Petto Kurinikku</a></Link>
+          <a className="p-2 font-bold hover:text-cyan-500 color-text">Petto Kurinikku</a></Link>
       </div>
     </div>
   )

@@ -8,9 +8,9 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html className='section'>
         <Head />
-        <body>
+        <body className="section">
           <Main />
           <NextScript />
         </body>
