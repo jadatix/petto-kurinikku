@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { connectToDatabase } from "../../lib/mongodb"
 import { reverse } from '../../lib/transliteration'
 
@@ -17,6 +18,7 @@ export const getServerSideProps = async (context) => {
 }
 
 const Details = ({ doctor }) => {
+  const router = useRouter()
   return (
     <>
       <section className="section body-font">
@@ -36,7 +38,13 @@ const Details = ({ doctor }) => {
               <div class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 dark:border-gray-800 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
                 <p class="leading-relaxed text-lg mb-4">{doctor.desc}</p>
                 <div className="sm:py-11 text-center">
-                  <Link href="/contact"><button className="contact-button">Записатися на прийом</button></Link>
+                  <Link href="/contact"><button className="contact-button" onClick={(event) => {
+                  
+                    router.push({
+                      pathname: '/contact',
+                      query: { examined_doctor: doctor.name }
+                    })
+                  }}>Записатися на прийом</button></Link>
                 </div>
               </div>
             </div>
