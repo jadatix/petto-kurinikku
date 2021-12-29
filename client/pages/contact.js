@@ -11,13 +11,13 @@ const Contact = () => {
   const [message, setMessage] = useState('')
   const [_submitted, setSubmitted] = useState(false)
   const router = useRouter()
-  const { examined_doctor } = router.query
+  const { examined_doctor, ordered_service } = router.query
 
   const handleSubmit = (e) => {
 
     console.log('Sending')
 
-    let data = { name, phone, email, message, examined_doctor }
+    let data = { name, phone, email, message, ordered_service, examined_doctor }
 
     fetch('https://localhost:7079/api/customers', {
       method: 'POST',
