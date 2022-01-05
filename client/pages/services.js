@@ -1,19 +1,24 @@
 import { connectToDatabase } from "../lib/mongodb";
-
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 
 const ServiceItem = (props) => {
+  const router = useRouter()
   return (
     <>
       <div className="transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 p-6 lg:w-1/3">
         <div className="flex flex-nowrap flex-col items-center justify-center  dark:bg-gray-800 h-5 bg-sky-100 bg-opacity-75 px-8 pt-20 pb-16 rounded-lg overflow-hidden relative">
-          <h2 className="tracking-widest text-xs title-font text-black font-semibold dark:text-gray-200 mb-1">
-            {props.price} &#8372;
-          </h2>
           <h1 className="dark:text-white title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">
             {props.name}
           </h1>
           <p className="mb-3 font-mono">{props.description}</p>
+          <Link href="/contact"><button className=" tracking-widest text-xs title-font text-black font-semibold dark:text-gray-200 mb-1" onClick={(event) => {
+            router.push({
+              pathname: '/contact',
+              query: { ordered_service: props.name }
+            })
+          }}>{props.price} &#8372;</button></Link>
         </div>
       </div>
     </>
